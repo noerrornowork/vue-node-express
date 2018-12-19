@@ -10,3 +10,7 @@ $axios.interceptors.response.use((res) => {
 export let getGoodsList = (page, pageSize, sort, priceLevel) => {
 	return $axios.get(`/goods?page=${page}&pageSize=${pageSize}&sort=${sort}&priceLevel=${priceLevel}`)
 }
+
+export let getCartDataByUserId = (id) => {
+	return $axios.post('/goods/addCart', {productId: id})
+}

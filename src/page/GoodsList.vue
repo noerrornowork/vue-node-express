@@ -54,7 +54,7 @@
                     <div class="name">{{ item.productName }}</div>
                     <div class="price">{{ item.salePrice }}</div>
                     <div class="btn-area">
-                      <a href="javascript:;" class="btn btn--m">加入购物车</a>
+                      <a href="javascript:;" class="btn btn--m" @click="addCart(item.productId)">加入购物车</a>
                     </div>
                   </div>
                 </li>
@@ -76,7 +76,7 @@
   import NavHeader from "@/base/NavHeader.vue";
   import NavBread from "@/base/NavBread.vue";
   import NavFooter from "@/base/NavFooter.vue";
-  import {getGoodsList} from '@/api'
+  import { getGoodsList, getCartDataByUserId } from '@/api'
   export default {
     created () {
       this.init(this.flag)
@@ -132,10 +132,18 @@
         }, 500)
       },
       setPriceFilter (index) {
-        console.log(index)
         this.priceLevel = index
         this.page = 1
         this.init(false)
+      },
+      async addCart (productId) {
+        let res = await getCartDataByUserId(productId)
+        console.log(res)
+        if (res.status === "0") {
+          alert('加入成功')
+        } else {
+          alert("msg:" + res.msg)
+        }
       }
     }
   };
