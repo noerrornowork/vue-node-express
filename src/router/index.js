@@ -16,6 +16,9 @@ import Router from "vue-router";
 const GoodsList = resolve => {
   require(["@/page/GoodsList.vue"], resolve);
 };
+const Login = resolve => {
+  require(["@/page/Login.vue"], resolve);
+};
 
 Vue.use(Router);
 
@@ -25,6 +28,11 @@ export default new Router({
       path: "/",
       name: "goodsList",
       component: GoodsList
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: Login
     }
   ]
 });
