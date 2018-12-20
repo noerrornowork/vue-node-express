@@ -86,7 +86,7 @@ router.post("/addCart", (req, res, next) => {
         msg: err.message
       })
     } else {
-     console.log(userDoc)
+     // console.log(userDoc)
      if (userDoc) {
       let goodsItem = ''
       userDoc.cartList.forEach((item => {
@@ -120,7 +120,7 @@ router.post("/addCart", (req, res, next) => {
           })
         } else {
           if (doc) {
-            console.log(doc)
+            // console.log(doc)
             cloneDoc = {
               "productId": doc.productId,
               "productName": doc.productName,
@@ -129,7 +129,7 @@ router.post("/addCart", (req, res, next) => {
               "checked": '1',
               "productNum": 1
             }
-            console.log(cloneDoc)
+            // console.log(cloneDoc)
             userDoc.cartList.push(cloneDoc)
             userDoc.save((err2) => {
               if (err2) {

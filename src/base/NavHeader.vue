@@ -29,7 +29,7 @@
         <div class="navbar-menu-container">
           <!--<a href="/" class="navbar-link">我的账户</a>-->
           <span class="navbar-link"></span>
-          <a href="javascript:void(0)" class="navbar-link" @click="login">Login</a>
+          <a href="javascript:void(0)" class="navbar-link">Login</a>
           <a href="javascript:void(0)" class="navbar-link">Logout</a>
           <div class="navbar-cart-container">
             <span class="navbar-cart-count"></span>
@@ -53,11 +53,7 @@
       }
     },
     methods: {
-      login () {
-        this.$router.push({
-          name: 'login'
-        })
-      }
+      
     }
   }
 </script>

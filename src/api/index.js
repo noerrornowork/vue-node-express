@@ -14,3 +14,10 @@ export let getGoodsList = (page, pageSize, sort, priceLevel) => {
 export let getCartDataByUserId = (id) => {
 	return $axios.post('/goods/addCart', {productId: id})
 }
+
+export let doLogin = (userName, userPwd) => {
+	return $axios.post('/users/doLogin', {
+		userName: userName,
+		userPwd: userPwd
+	})
+}
