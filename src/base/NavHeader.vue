@@ -28,9 +28,9 @@
       <div class="navbar-right-container" style="display: flex;">
         <div class="navbar-menu-container">
           <!--<a href="/" class="navbar-link">我的账户</a>-->
-          <span class="navbar-link"></span>
-          <a href="javascript:void(0)" class="navbar-link">Login</a>
-          <a href="javascript:void(0)" class="navbar-link">Logout</a>
+          <span class="navbar-link" v-show="nickName">{{ nickName }}</span>
+          <a href="javascript:void(0)" class="navbar-link" @click="login" v-show="!nickName">Login</a>
+          <a href="javascript:void(0)" class="navbar-link" v-show="nickName" @click="logout">Logout</a>
           <div class="navbar-cart-container">
             <span class="navbar-cart-count"></span>
             <a class="navbar-link navbar-cart-link" href="/#/cart">
@@ -46,14 +46,34 @@
 </template>
 <script>
   import '@/assets/css/login.css'
+  import { doLogout } from '@/api'
   export default {
+    computed: {
+      nickName () {
+
+        return this.$route.query.nickName
+      }
+    },
     data () {
       return {
-        
+        tempName: ''
       }
     },
     methods: {
-      
+      login () {
+        this.$router.push({
+          name: 'login'
+        })
+      },
+      async logout () {
+        let res = await doLogout()
+        
+        if (res.status === '0') {
+          this.$router.push({
+            name: 'login'
+          })
+        }
+      }
     }
   }
 </script>

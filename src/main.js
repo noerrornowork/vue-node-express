@@ -5,10 +5,16 @@ import App from './App'
 import router from './router'
 
 import infiniteScroll from 'vue-infinite-scroll'
+import  { ToastPlugin } from 'vux'
+import * as filters from '@/assets/js/filter.js'
 
 Vue.config.productionTip = false
-
+Vue.use(ToastPlugin)
 Vue.use(infiniteScroll)
+
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
 
 /* eslint-disable no-new */
 new Vue({

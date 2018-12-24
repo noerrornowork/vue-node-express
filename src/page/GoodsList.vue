@@ -67,6 +67,18 @@
         </div>
       </div>
     </div>
+    <!-- 弹框 -->
+    <div v-transfer-dom>
+      <x-dialog v-model="show" class="dialog-demo" hide-on-blur>
+        <div class="img-box">
+          <a href="javasript:;" @click="show=false">继续购物</a>
+          <router-link to="/cart">查看购物车</router-link>
+        </div>
+        <div @click="show=false">
+          <span class="vux-close"></span>
+        </div>
+      </x-dialog>
+    </div>
     <nav-footer></nav-footer>
   </div>
 </template>
@@ -76,6 +88,8 @@
   import NavHeader from "@/base/NavHeader.vue";
   import NavBread from "@/base/NavBread.vue";
   import NavFooter from "@/base/NavFooter.vue";
+  import { XDialog, TransferDomDirective as TransferDom } from 'vux'
+
   import { getGoodsList, getCartDataByUserId } from '@/api'
   export default {
     created () {
@@ -89,13 +103,18 @@
         sortFlag: true,
         busy: false,
         priceLevel: '',
-        flag: false
-      };
+        flag: false,
+        show: false
+      }
+    },
+    directives: {
+      TransferDom
     },
     components: {
       NavHeader,
       NavBread,
-      NavFooter
+      NavFooter,
+      XDialog
     },
     methods: {
       async init(flag) {
@@ -140,18 +159,41 @@
         let res = await getCartDataByUserId(productId)
         console.log(res)
         if (res.status === "0") {
-          alert('加入成功')
+          this.show = true
         } else {
-          alert("msg:" + res.msg)
+          // this.mdShow = true
         }
       }
     }
   };
 </script>
-<style scoped>
+<style scoped lang="less">
+@import '~vux/src/styles/close';
   .loadMore {
     height: 100px;
     line-height: 100px;
     text-align: center;
   }
+.btn:hover {
+  background-color: #ffe5e6;
+  transition: all .3s ease-out;
+}
+.dialog-demo {
+  .weui-dialog{
+    border-radius: 8px;
+    padding-bottom: 8px;
+  }
+  .dialog-title {
+    line-height: 30px;
+    color: #666;
+  }
+  .img-box {
+    height: 350px;
+    overflow: hidden;
+  }
+  .vux-close {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+}
 </style>

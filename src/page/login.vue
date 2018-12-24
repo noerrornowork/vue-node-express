@@ -40,12 +40,14 @@
 				let userPwd = this.userPwd
 
 				let res = await doLogin(userName, userPwd)
-				console.log(res)
 
 				if (res.status === '0') {
 					this.errorTips = false
 					this.$router.push({
-						name: 'goodsList'
+						name: 'goodsList',
+						query: {
+							nickName: res.result.userName
+						}
 					})
 				}
 			}
@@ -136,12 +138,12 @@
 	}
 	.icon-username {
 		display: inline-block;
-    background: url("../assets/images/username.png") no-repeat center left;
-    background-size: 50% 50%;
+	background: url("../assets/images/username.png") no-repeat center left;
+	background-size: 50% 50%;
 	}
 	.icon-pwd {
 		display: inline-block;
-    background: url("../assets/images/pwd.png") no-repeat center left;
-    background-size: 50% 50%;
+	background: url("../assets/images/pwd.png") no-repeat center left;
+	background-size: 50% 50%;
 	}
 </style>

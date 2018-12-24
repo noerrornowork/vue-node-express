@@ -55,6 +55,7 @@ router.get('/', function(req, res, next) {
   	}
   }
   let goodModel = Good.find(params).skip(skip).limit(pageSize)
+  // 排序
   goodModel.sort({'salePrice': sort})
   goodModel.exec((err, doc) => {
   	if (err) {
