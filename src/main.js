@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import "@/assets/css/base.css"
+import '@/assets/css/checkout.css'
+
 import infiniteScroll from 'vue-infinite-scroll'
 import  { ToastPlugin } from 'vux'
 import * as filters from '@/assets/js/filter.js'

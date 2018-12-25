@@ -19,6 +19,15 @@ const GoodsList = resolve => {
 const Cart = resolve => {
   require(["@/page/Cart.vue"], resolve);
 };
+const Address = resolve => {
+  require(["@/page/Address.vue"], resolve);
+};
+const OrderConfirm = resolve => {
+  require(["@/page/OrderConfirm.vue"], resolve);
+};
+const OrderSuccess = resolve => {
+  require(["@/page/OrderSuccess.vue"], resolve);
+};
 const Login = resolve => {
   require(["@/page/Login.vue"], resolve);
 };
@@ -36,6 +45,21 @@ export default new Router({
       path: "/cart",
       name: "cart",
       component: Cart
+    },
+    {
+      path: "/address",
+      name: "address",
+      component: Address
+    },
+    {
+      path: "/orderConfirm",
+      name: "orderConfirm",
+      component: OrderConfirm
+    },
+    {
+      path: "/orderSuccess",
+      name: "orderSuccess",
+      component: OrderSuccess
     },
     {
       path: "/login",

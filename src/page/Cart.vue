@@ -58,9 +58,7 @@
                   <div class="cart-item-opration">
                     <a href="javascript:;" class="item-edit-btn">
                       <button class="btn-del" @click="delCartConfirm(item.productId)">删除</button>
-                      <!-- <svg class="icon icon-del">
-                        <use xlink:href="#icon-del"></use>
-                      </svg> -->
+                      <svg class="icon icon-del"><use xlink:href="#icon-del"></use></svg>
                     </a>
                   </div>
                 </div>
@@ -85,7 +83,7 @@
                 Item total: <span class="total-price">{{ totalPrice | priceFilter('$') }}</span>
               </div>
               <div class="btn-wrap">
-                <a class="btn btn--red">Checkout</a>
+                <a class="btn btn--red" :class="{'btn--dis': checkedCount===0}" @click="checkOut">Checkout</a>
               </div>
             </div>
           </div>
@@ -108,9 +106,7 @@
   </div>
 </template>
 <script>
-  import "@/assets/css/base.css";
   import "@/assets/css/product.css";
-  import '@/assets/css/checkout.css'
   import NavHeader from "@/base/NavHeader.vue";
   import NavBread from "@/base/NavBread.vue";
   import NavFooter from "@/base/NavFooter.vue";
@@ -140,13 +136,13 @@
       // checkAllFlag () {
       //   return this.checkedCount === this.cartList.length
       // },
-      // checkedCount () {
-      //   let i = 0
-      //   this.cartList.forEach(item => {
-      //     if (item.checked === '1') i++
-      //   })
-      //   return i
-      // }
+      checkedCount () {
+        let i = 0
+        this.cartList.forEach(item => {
+          if (item.checked === '1') i++
+        })
+        return i
+      },
       checkAllFlag () {
         return this.cartList.every(item => {
           return item.checked === '1'
@@ -208,6 +204,13 @@
           item.checked = flag ? '1' : '-1'
         })
         let res = await editChexkAll(flag)
+      },
+      checkOut () {
+        if (this.checkedCount > 0) {
+          this.$router.push({
+            name: 'address'
+          })
+        }
       }
     }
   }

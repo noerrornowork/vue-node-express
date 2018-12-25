@@ -83,8 +83,7 @@
   </div>
 </template>
 <script>
-  import "@/assets/css/base.css";
-  import "@/assets/css/product.css";
+  import '@/assets/css/product.css'
   import NavHeader from "@/base/NavHeader.vue";
   import NavBread from "@/base/NavBread.vue";
   import NavFooter from "@/base/NavFooter.vue";
